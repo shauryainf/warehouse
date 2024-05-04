@@ -12,3 +12,5 @@ langchain_openai
 flask
 flask_cors
 langchain_mongodb
+pandas
+tiktoken

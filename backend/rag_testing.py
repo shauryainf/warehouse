@@ -31,7 +31,7 @@ embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 
 # Step 4: Store
 client = MongoClient(mongo_db_conn_str)
-collection = client["warehouse_db"]["date_col"]
+collection = client["warehouse_db"]["data_col"]
 
 # Reset w/out deleting the Search Index 
 collection.delete_many({})
