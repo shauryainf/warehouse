@@ -12,13 +12,15 @@ export default function Home() {
       try {
         const device = navigator.bluetooth.requestDevice({
           acceptAllDevices: true
-        });
-        const connection = device.connect();
-        if (connection) {
-          console.log("Device is connected!");
-        } else {
-          console.log("Connection failed or cancelled by user.");
+        })
+        .then(device => {
+          console.log('Got device:', device.name);
+          // Human-readable name of the device.
+        
+        return device.gatt?.connect();
         }
+      );
+        
       } catch (error) {
         console.error("Error connecting to device:", error);
       }
