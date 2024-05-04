@@ -65,20 +65,21 @@ export function VestGPT() {
     <div className="lg:min-w-[230%] w-96 lg:max-w-[50%] max-h-[760px] lg:max-h-[810px] overflow-y-auto lg:ml-[-70%]">
       <div className="m-2 sm:max-w-[100%] lg:max-w-[100%] ">
         
-        <div className="w-[100%] mt-3 bg-black bg-opacity-30 text-white bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-70 border border-white p-2 rounded-md ">
+        <div className="w-[100%] mt-2  chatstyle rounded-md ">
             {/* 
                 
                 Update 
                 List 
                 Find (3)
             */}
-            <div className="">
+            <div className="mb-4">
                 <button className="  hover:bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black rounded-md bg-clip-padding bg-opacity-20 border border-gray-100
                                                                                                                                                              w-[24%] lg:ml-1 h-12  ">START</button>
                 <button className="hover:bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black w-[24%] lg:ml-2 ml-1  h-12  border border-gray-100 rounded-md">STOP</button>
                 <button className="hover:bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black w-[24%] lg:ml-2 ml-1   h-12 border border-gray-100 rounded-md">UPDATE</button>
                 <button className="hover:bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black w-[24%] lg:ml-2 ml-1  h-12  border border-gray-100 rounded-md">FIND</button>
             </div>
+            <hr />
             
       </div>
       </div>
