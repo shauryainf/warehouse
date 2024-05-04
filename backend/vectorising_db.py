@@ -37,7 +37,8 @@ def insert_or_update_all_embeddings(field_to_embed = 'data'):
         doc[f'embedding_{field_to_embed}'] = create_embedding(doc[field_to_embed])
         db.replace_one({'_id': doc['_id']}, doc)
         print(f"Document with _id: {doc['_id']} updated.")
+    client.close()
 
 
 
-insert_or_update_all_embeddings()
+# insert_or_update_all_embeddings()

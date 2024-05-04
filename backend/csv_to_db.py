@@ -22,4 +22,6 @@ def csv_to_mongodb(csv_file_path):
     # Insert the data into the MongoDB collection
     collection.insert_many(list_of_dict)
 
+    client.close()
+
 csv_to_mongodb("data/products.csv")

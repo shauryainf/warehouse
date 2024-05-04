@@ -46,3 +46,5 @@ results = vector_search.similarity_search_with_score(query="Who founded AT&T?", 
 for result in results:
     doc, score = result
     print(f"Document: {doc}, Score: {score}")
+
+client.close()
