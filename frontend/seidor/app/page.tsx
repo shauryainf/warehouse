@@ -1,5 +1,7 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { VestGPT } from "@/components/home/gpt";
 import Image from "next/image";
 export default function Home() {
   return (
@@ -15,6 +17,10 @@ export default function Home() {
     <div className="bg-gray-100 dark:bg-gray-800 p-4 flex items-center">
         <Input className="flex-1 mr-4" placeholder="Type your message..." type="text" />
         <Button>Send</Button>
+      </div>
+
+      <div className="flex-1 flex items-center justify-center">
+        <VestGPT />
       </div>
     </div>
 
