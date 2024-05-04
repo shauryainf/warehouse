@@ -61,14 +61,25 @@ export function VestGPT() {
   };
 
   return (
-    <div>
-    <div className=" lg:max-w-[50%] max-h-[760px] lg:max-h-[810px] overflow-y-auto lg:ml-[25%]">
-      <div className="m-3 sm:max-w-[100%] lg:max-w-[100%] ">
-        <div className="w-full">
-          <strong>Chat with the new Seidor AI</strong> (feedback: <a className="underline" href="">click here</a>)
-        </div>
-        <div className="w-[100%]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam impedit fugiat blanditiis soluta amet itaque dolor molestias, sint quia inventore magni! Exercitationem voluptatum quibusdam asperiores ex modi dicta quisquam beatae?
+  
+    <div className="lg:min-w-[230%] w-96 lg:max-w-[50%] max-h-[760px] lg:max-h-[810px] overflow-y-auto lg:ml-[-70%]">
+      <div className="m-2 sm:max-w-[100%] lg:max-w-[100%] ">
+        
+        <div className="w-[100%] mt-3 bg-black bg-opacity-30 text-white bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-70 border border-white p-2 rounded-md ">
+            {/* 
+                
+                Update 
+                List 
+                Find (3)
+            */}
+            <div className="">
+                <button className="  hover:bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black rounded-md bg-clip-padding bg-opacity-20 border border-gray-100
+                                                                                                                                                             w-[24%] lg:ml-1 h-12  ">START</button>
+                <button className="hover:bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black w-[24%] lg:ml-2 ml-1  h-12  border border-gray-100 rounded-md">STOP</button>
+                <button className="hover:bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black w-[24%] lg:ml-2 ml-1   h-12 border border-gray-100 rounded-md">UPDATE</button>
+                <button className="hover:bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black w-[24%] lg:ml-2 ml-1  h-12  border border-gray-100 rounded-md">FIND</button>
+            </div>
+            
       </div>
       </div>
 
@@ -91,13 +102,15 @@ export function VestGPT() {
             border: 1px solid rgba(255, 255, 255, 0.78);
           }
           .chatstyleuser {
-            background: rgba(30, 60, 122, 0.6);
+            background: rgba(0, 0, 0, 0.6);
             box-shadow: 0 2px 8px 0 rgba(255, 255, 255, 0.37);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-radius: 8px;
             border: 1px solid rgba(255, 255, 255, 0.78);
+            color: white;
           }
+         
 
         `}</style>
 
@@ -139,9 +152,9 @@ export function VestGPT() {
       </div>
       
 
-      <div className="w-full px-2 flex gap-x-2 absolute bottom-4 sm:max-w-[320px] lg:min-w-[68%]">
+      <div className="w-full ml-2 flex gap-x-2 absolute bottom-4 sm:max-w-[320px] lg:min-w-[68%]">
         <Input
-          className="bg-[#fafafa] lg:max-w-[63%]"
+          className="bg-[#fafafa] w-[75%] lg:max-w-[63%]"
           placeholder="Type your questions here..."
           onChange={(e) => {
             setQuestion(e.target.value);
@@ -155,7 +168,7 @@ export function VestGPT() {
           value={question}
         />
         <Button
-          className="bg-black hover:bg-sky-700"
+          className="bg-black "
           type="submit"
           onClick={(e) => {
             query();
@@ -168,6 +181,6 @@ export function VestGPT() {
         </Button>
       </div>
     </div>
-    </div>
+    
   );
 }
