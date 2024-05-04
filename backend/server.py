@@ -10,11 +10,6 @@ CORS(app)
 def hello_world():
     return 'Hello, World!'
 
-# helper function to classify the user customer/tina
-def classify_user(user_message) -> str:
-    return None
-    
-
 @app.route('/query', methods=['POST'])
 def query():
     data = request.get_json()
