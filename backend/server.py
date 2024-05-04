@@ -23,7 +23,7 @@ def query():
         previous_messages = json.loads(previous_messages)
 
     response, sources, prompt_tokens, total_tokens = get_response_for_chatprompt(query_param, version=version, chat_history=previous_messages)
-    return jsonify({'response': response, 'sources': sources, 'prompt_tokens': prompt_tokens, 'total_tokens': total_tokens, 'personas': personas})
+    return jsonify({'response': response, 'sources': sources, 'prompt_tokens': prompt_tokens, 'total_tokens': total_tokens})
 
 
 if __name__ == '__main__':
