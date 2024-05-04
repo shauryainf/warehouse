@@ -13,4 +13,3 @@ flask
 flask_cors
 langchain_mongodb
 pandas
-tiktoken
