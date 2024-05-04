@@ -1,0 +1,13 @@
+argparse
+langchain>=0.0.231
+lxml
+pymongo
+requests
+bs4
+openai
+tiktoken
+python-dotenv
+langchain_openai
+flask
+flask_cors
+langchain_mongodb
