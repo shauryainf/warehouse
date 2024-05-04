@@ -1,113 +1,173 @@
-"use client"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { useState } from "react"
+"use client";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
 interface QAPair {
-    question: string;
-    answer: string;
+  question: string;
+  answer: string;
 }
 
 export function VestGPT() {
-    const [question, setQuestion] = useState<string>("")
-    const [qaPairs, setQAPairs] = useState<QAPair[]>([])
-        let qaPairs2: QAPair[] = [
-        {
-            question: "What is ESG investing?",
-            answer: "ESG investing is something"
-        }
-        // Add more pairs here as needed
-    ];
-    const query = async () => {
-        try {
-            setQAPairs((prevPairs) => [...prevPairs, { question: question, answer: '' }]);
-            const response = await fetch("/api/llm", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    "prompt": question
-                }),
-            });
+  const [question, setQuestion] = useState<string>("");
+  const [qaPairs, setQAPairs] = useState<QAPair[]>([]);
+  let qaPairs2: QAPair[] = [
+    {
+      question: "What is ESG investing?",
+      answer: "ESG investing is something",
+    },
+    // Add more pairs here as needed
+  ];
+  const query = async () => {
+    try {
+      setQAPairs((prevPairs) => [
+        ...prevPairs,
+        { question: question, answer: "" },
+      ]);
+      const response = await fetch("/api/llm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt: question,
+        }),
+      });
 
-            if (response.ok) {
-                // Handle successful response
-                const data = await response.json();
-                setQAPairs((prevPairs) => [...prevPairs.slice(0, -1), { question: question, answer: data.response }]);
-                // qaPairs.push({ question: question, answer: data.response })
-                qaPairs2.push({
-                    question: "What is ESG investing?",
-                    answer: "ESG investing is something"
-                })
+      if (response.ok) {
+        // Handle successful response
+        const data = await response.json();
+        setQAPairs((prevPairs) => [
+          ...prevPairs.slice(0, -1),
+          { question: question, answer: data.response },
+        ]);
+        // qaPairs.push({ question: question, answer: data.response })
+        qaPairs2.push({
+          question: "What is ESG investing?",
+          answer: "ESG investing is something",
+        });
 
-                setQuestion("");
-                console.log(data);
-                console.log(qaPairs);
-            } else {
-                // Handle error response
-                console.error("Error:", response.status);
-            }
-        } catch (error) {
-            // Handle network error
-            console.error("Error:", error);
-        }
-    };
+        setQuestion("");
+        console.log(data);
+        console.log(qaPairs);
+      } else {
+        // Handle error response
+        console.error("Error:", response.status);
+      }
+    } catch (error) {
+      // Handle network error
+      console.error("Error:", error);
+    }
+  };
 
-
-    return (
-        <div>
-            <div className="flex flex-col sm:max-w-[425px] lg:max-w-[900px] h-5/6">
-                <div>
-                    <div>Chat with VestGPT</div>
-                    <div>
-                        You can ask the questions related to ESG and we will try to answer them.
-                    </div>
-                </div>
-                <div className="flex flex-col h-full p-6 space-y-4 overflow-y-auto">
-                    {qaPairs.map((pair, index) => (
-                        <div key={index} className="flex gap-4 flex-col">
-                            <div className="flex gap-6">
-                                <div className="shrink-0">
-                                    <img src="/boy.png" alt="ESG Image" width={40} height={40} />
-                                </div>
-                                <div className="col-span-11">
-                                    {pair.question}
-                                </div>
-                            </div>
-                            <div className="flex gap-6">
-                                <div className="shrink-0">
-                                    <img src="/gpt.png" alt="ESG Image" width={40} height={40} />
-                                </div>
-                                <div className="col-span-11">
-                                    {pair.answer}
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-                <div>
-                    <div className=" w-full m-4 flex gap-x-4">
-                        <Input placeholder="Type your questions here..." 
-                            onChange={(e) => { setQuestion(e.target.value) } }
-                            onKeyDown={(e) => { 
-                                if (e.key === 'Enter') { 
-                                query(); 
-                                setQuestion(''); 
-                                } 
-                            } }
-                            value={question} 
-                        />
-                        <Button type="submit" 
-                            onClick={(e) => { 
-                                query(); 
-                                setQuestion('');
-                            } }
-                            disabled={question ===""}> Ask
-                        </Button>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div>
+    <div className=" lg:max-w-[50%] max-h-[760px] lg:max-h-[810px] overflow-y-auto lg:ml-[25%]">
+      <div className="m-3 sm:max-w-[100%] lg:max-w-[100%] ">
+        <div className="w-full">
+          <strong>Chat with the new Seidor AI</strong> (feedback: <a className="underline" href="">click here</a>)
         </div>
-    )
+        <div className="w-[100%]">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam impedit fugiat blanditiis soluta amet itaque dolor molestias, sint quia inventore magni! Exercitationem voluptatum quibusdam asperiores ex modi dicta quisquam beatae?
+      </div>
+      </div>
+
+      <div
+        className="p-2
+ flex flex-col sm:max-w-[100%] lg:max-w-[100%] w-[100%] "
+      > <div className="flex chatstyle w-[75%]">
+      <div className="shrink-0">
+        <img src="/ai.png" alt="ESG Image" width={40} height={40} />
+      </div>
+      <div className="col-span-11 text-sm flex items-center">Hello, how can I assist you today?</div>
+    </div>
+        <style jsx>{`
+          .chatstyle {
+            background: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 2px 8px 0 rgba(255, 255, 255, 0.37);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.78);
+          }
+          .chatstyleuser {
+            background: rgba(30, 60, 122, 0.6);
+            box-shadow: 0 2px 8px 0 rgba(255, 255, 255, 0.37);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.78);
+          }
+
+        `}</style>
+
+        <div className="flex flex-col pt-2 space-y-2 overflow-y-auto  ">
+          {qaPairs.map((pair, index) => (
+            <div key={index} className="flex gap-2 flex-col overflow-y-auto">
+              <div className="text-sm flex items-center chatstyleuser w-[75%] ml-[25%]">
+                <div className="shrink-0">
+                  <img
+                    className="w-10"
+                    src="https://cdn3d.iconscout.com/3d/free/thumb/free-user-3814118-3187499.png?f=webp"
+                    alt="ESG Image"
+                    width={40}
+                    height={40}
+                  />
+                </div>
+                <div className="col-span-11 mt-1">
+                  <p className="text-inherit">{pair.question}</p>
+                </div>
+              </div>
+              <div className="text-sm flex items-center chatstyle w-[75%]">
+                <div className="shrink-0">
+                  <img src="/ai.png" alt="ESG Image" width={40} height={40} />
+                </div>
+                <div className="col-span-11">{pair.answer}</div>
+              </div>
+            </div>
+          ))}
+          </div>
+
+          <div></div>
+        </div>
+      
+    
+      <div className="bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-70 border border-white
+ h-20 flex w-32 py-2 absolute bottom-16 rounded-md mx-2 ">
+        <img src="https://icons.iconarchive.com/icons/michael/coke-pepsi/512/Coca-Cola-Can-icon.png" alt="" />
+        <span className="flex items-center text-sm"><strong>COKE</strong></span>
+      </div>
+      
+
+      <div className="w-full px-2 flex gap-x-2 absolute bottom-4 sm:max-w-[320px] lg:min-w-[68%]">
+        <Input
+          className="bg-[#fafafa] lg:max-w-[63%]"
+          placeholder="Type your questions here..."
+          onChange={(e) => {
+            setQuestion(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              query();
+              setQuestion("");
+            }
+          }}
+          value={question}
+        />
+        <Button
+          className="bg-black hover:bg-sky-700"
+          type="submit"
+          onClick={(e) => {
+            query();
+            setQuestion("");
+          }}
+          disabled={question === ""}
+        >
+          {" "}
+          Ask
+        </Button>
+      </div>
+    </div>
+    </div>
+  );
 }
