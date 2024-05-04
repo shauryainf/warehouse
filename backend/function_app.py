@@ -1,7 +1,8 @@
 import azure.functions as func
 import logging
 import json
-from llm import get_response_for_chatprompt
+
+from server_funcs import get_response_for_chatprompt
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
