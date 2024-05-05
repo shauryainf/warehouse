@@ -1,13 +1,9 @@
 "use client"
-import { Button } from "@/app/components/ui/button";
-import { Input } from "@/app/components/ui/input";
-import { VestGPT } from "@/app/components/home/gpt";
-import Image from "next/image";
 
+import { VestGPT } from "@/app/components/home/gpt";
+import Dictaphone from "./components/home/stt";
 export default function Home() {
   function myFunction() {
-    console.log("Hello World")
-    //navigator.bluetooth.requestDevice({acceptAllDevices: true})
 
     try {
       const device = navigator.bluetooth.requestDevice({
@@ -53,9 +49,7 @@ export default function Home() {
 
       <div className="m-2 inline-block mx-auto">
         <VestGPT />
-        {/* <button onClick={() => query(url1)}>Query</button> */}
       </div>
     </div>
-
   );
 }

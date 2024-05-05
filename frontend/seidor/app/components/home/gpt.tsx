@@ -1,9 +1,7 @@
 "use client";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
-import { AudioLinesIcon, VoicemailIcon } from "lucide-react";
 import { useState } from "react";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import VoiceWidget from "./voice";
 interface QAPair {
   role: "user" | "system";
@@ -150,24 +148,7 @@ export function VestGPT() {
 
 
       <div className="w-full ml-2 flex gap-x-2 absolute bottom-4 sm:max-w-[320px] lg:min-w-[68%]">
-        <Dialog>
-          <DialogTrigger>
-            <AudioLinesIcon className="w-6 h-6 text-black" />
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle>Say Hello Sei</DialogTitle>
-              <DialogDescription>
-                Connect with Sei and ask your questions verbally
-              </DialogDescription>
-            </DialogHeader>
-            <VoiceWidget />
-            {/* <DialogFooter>
-              <Button type="submit">Start</Button>
-              <Button variant="secondary">Stop</Button>
-            </DialogFooter> */}
-          </DialogContent>
-        </Dialog>
+        <VoiceWidget />
         <Input
           className="bg-[#fafafa] w-[75%] lg:max-w-[63%] text-black"
           placeholder="Type your questions here..."
