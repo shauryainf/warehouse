@@ -4,6 +4,7 @@ import json
 from dotenv import load_dotenv
 import system_prompts
 from classifiers import classify_picking_process_query_type, classify_task 
+from semantic_search_db import similarity_search
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -55,18 +56,18 @@ def get_response_for_chatprompt(message, version=3, chat_history=None):
 
 
     # SEMANTIC SEARCH 
-    # TODO
     print("Chat History: " + str(chat_history))
-    # chat_history_as_string = message
-    # if len(chat_history) > 0:
-    #     chat_history_as_string =  " ".join([chat["content"] for chat in chat_history])
+    chat_history_as_string = message
+    if len(chat_history) > 0:
+        chat_history_as_string =  " ".join([chat["content"] for chat in chat_history])
 
     context_list = []
-    # context_list = similarity_search(chat_history_as_string)
-    # print("Documents Recieved : " + str(len(context_list)))
+    context_list = similarity_search(chat_history_as_string)
+    print("Documents Recieved : " + str(len(context_list)))
 
     # PROMPT PROCESSING
-    processed_chat_prompt = "You are a friendly AI assistant here to help you with any questions you have. Ask me anything!"
+    # processed_chat_prompt = system_prompts.system_prompt_process_tips.format(chat_history=str(chat_history), picking_list=str(system_prompts.get_order_list(new_order_number)))
+    processed_chat_prompt = system_prompts.prompt_2_order_query.format(query=message, context_list=str(context_list))
     processed_user_prompt = message
     #   processed_chat_prompt = chat_prompt.format(chat_history=str(chat_history))
     #   processed_user_prompt = user_prompt.format(message=message, context=str(context_list))

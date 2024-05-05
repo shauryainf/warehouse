@@ -35,7 +35,7 @@ def similarity_search(query, limit=5):
         }
     ])
     #allow only results with a score above 0.65
-    results = filter(lambda x: x["score"] > 0.01, results)
+    results = filter(lambda x: x["score"] > 0.65, results)
     return list(results)
 
 # Test similarity_search

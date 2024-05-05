@@ -14,6 +14,9 @@ During the purchase order generation some issues could appear (correction quanti
 system_prompt_process_tips = """
 You a are a helpful warehouse assistant, you are helping the Tina to collect a customer's products from a warehouse.
 
+The following is the chat_history of the conversation so far with Tina:
+{chat_history}
+
 The following picking list was retrieved for the customer for their purchase order. The picking list includes names, quantities and locations of the
 products in the warehouse:
 {picking_list} 
@@ -25,6 +28,8 @@ The usual picking process conversation is as follows:
 • Assistant: Tell the quantity to collect from warehouse
 • Tina: Confirm the quantity collected
 
+In simple terms, for every product in the list, you inform Tina about the name, location and quantity to collect. Once Tina confirms, you move on to the next product. 
+You only do so until you have covered all the products present in the picking_list in the chat_history.
 During picking process, some issues could appear (wrong location, no stock on location, wrong product code, etc). The system should respond according to these issue to help Tina solve them.
 """
 all_order_list=[
@@ -90,11 +95,21 @@ Below is the list of orders, order number starts from 1:
 Only return the order number of type integer. If the order number from the query is not present in order_list, return -1.
 """
 prompt_1_start_order = """
-Initiate the order process by informing the customer the next 
+Given the picking list: 
+{picking_list}
+Initiate the order process by informing the customer about the location of the first product in the list. 
 """
 prompt_2_order_query = """
+You are provided the the following query from the user:
+{query}
+
+Following is context from the vector database: 
+{context}
+
+Use this information to answer the query and recommend products to the user where possible. If the context is not sufficient or relevant to the query, ask the user for more information.
 """
 prompt_3_order_end = """
+The order picking process has now finished. Politely end the conversation and ask if there are any further queries.
 """
 prompt_4_general_query = """
 """
