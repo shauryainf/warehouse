@@ -2,6 +2,8 @@ import openai
 import os
 import json
 from dotenv import load_dotenv
+from system_prompts import system_prompt_purchase_order, system_prompt_process_tips
+from classifiers import classify_picking_process_query_type 
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -9,6 +11,9 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 #--------------------------------- Functions ---------------------------------#
 
 def get_response_for_chatprompt(message, version=3, chat_history=None):
+    # CLASSIFICATION
+    classification = classify_picking_process_query_type(message, 0)
+    
     # SEMANTIC SEARCH 
     # TODO
     print("Chat History: " + str(chat_history))
