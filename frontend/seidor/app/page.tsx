@@ -20,19 +20,13 @@ export default function Home() {
           return device.gatt?.connect();
         }
         );
-
     } catch (error) {
       console.error("Error connecting to device:", error);
     }
-
-
   }
-
-  
 
   return (
     <div className="flex flex-col h-screen home ">
-
       <style jsx>{`
             .home {
               background-image: linear-gradient(180deg, #111827 12%, #ffffff 100%);
@@ -56,7 +50,6 @@ export default function Home() {
           />
         </button>
       </header>
-
 
       <div className="m-2 inline-block mx-auto">
         <VestGPT />

@@ -34,9 +34,9 @@ export default function VoiceWidget() {
   } = usePorcupine();
 
 
-  const porcupineKeyword = { 
-      publicPath: "/ok.ppn",
-      label: "a" // An arbitrary string used to identify the keyword once the detection occurs.
+  const porcupineKeyword = {
+    publicPath: "/sei.ppn",
+    label: "a" // An arbitrary string used to identify the keyword once the detection occurs.
   }
   const porcupineModel = { publicPath: "/porcupine_params.pv" }
 
@@ -63,7 +63,6 @@ export default function VoiceWidget() {
     console.log("isError: ", error);
     console.log("isListening: ", isListening);
     console.log("Listening");
- 
   };
 
   const sto = async () => {
@@ -73,14 +72,14 @@ export default function VoiceWidget() {
 
 
   // ... render component
-return (
-  <div>
-   <button onClick={st}>Start</button>
-    <button onClick={sto}>Stop</button>
-    <div className="flex justify-center h-100 w-100">
-          <App />
-        </div>
-  </div>
-);
+  return (
+    <div>
+      <button onClick={st}>Start</button>
+      <button onClick={sto}>Stop</button>
+      <div className="flex justify-center h-100 w-100">
+        <App />
+      </div>
+    </div>
+  );
 }
 
