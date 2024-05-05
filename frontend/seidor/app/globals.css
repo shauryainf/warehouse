@@ -74,3 +74,9 @@
       @apply bg-background text-foreground;
     }
   }
+  body {
+    scrollbar-width: thin;
+    margin-bottom: 20px;          /* "auto" or "thin" */
+    scrollbar-color: white #111827;
+      /* scroll thumb and track */ 
+  }

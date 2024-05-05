@@ -52,41 +52,46 @@ export function VestGPT() {
 
   return (
 
-    <div className="lg:min-w-[230%] w-96 lg:max-w-[50%] max-h-[760px] lg:max-h-[810px] overflow-y-auto lg:ml-[-70%]">
+    <div className="lg:min-w-[230%] w-96 lg:max-w-[50%] max-h-[734px] lg:max-h-[800px] overflow-y-auto lg:ml-[-70%]">
       <div className="m-2 sm:max-w-[100%] lg:max-w-[100%] ">
         <div className="w-[100%] mt-2  chatstyle rounded-md ">
           <div className="mb-4">
-            <button className="  hover:bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black rounded-md bg-clip-padding bg-opacity-20 border border-gray-100                                                                                                                                               w-[24%] lg:ml-1 h-12  ">START</button>
-            <button className="hover:bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black w-[24%] lg:ml-2 ml-1  h-12  border border-gray-100 rounded-md">STOP</button>
-            <button className="hover:bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black w-[24%] lg:ml-2 ml-1   h-12 border border-gray-100 rounded-md">UPDATE</button>
-            <button className="hover:bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black w-[24%] lg:ml-2 ml-1  h-12  border border-gray-100 rounded-md">FIND</button>
+            <button className="text-black bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black rounded-lg border border-gray-100                                                                                                                                               w-[24%] lg:ml-1 h-12  ">START</button>
+            <button className="text-black bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black w-[24%] lg:ml-2 ml-1  h-12  border border-gray-100 rounded-lg">STOP</button>
+            <button className="text-black bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black w-[24%] lg:ml-2 ml-1   h-12 border border-gray-100 rounded-lg">UPDATE</button>
+            <button className="text-black bg-white hover:backdrop-filter hover:backdrop-blur-md hover:bg-opacity-70 hover:border-black hover:text-black w-[24%] lg:ml-2 ml-1  h-12  border border-gray-100 rounded-lg">FIND</button>
           </div>
+          <hr className="h-[2px] bg-white" />
           <hr />
         </div>
       </div>
       <div className="p-2 flex flex-col sm:max-w-[100%] lg:max-w-[100%] w-[100%]">
-        <div className="flex chatstyle w-[75%]">
+        <div className="flex">
           <div className="shrink-0">
-            <img src="/ai.png" alt="ESG Image" width={40} height={40} />
+            <img src="/ai.png" alt="Seidor AI Image" className="mr-2 w-6 h-6 mt-1" />
           </div>
-          <div className="col-span-11 text-sm flex items-center">Hello, how can I assist you today?</div>
-        </div>
+          <div className="flex chatstyle w-[75%]">
+            <div className="ml-2 p-1 col-span-11 text-base text-white flex items-center">
+              Hello, how can I assist you today?
+            </div>
+          </div>
+                  </div>
         <style jsx>{`
           .chatstyle {
-            background: rgba(255, 255, 255, 0.35);
-            box-shadow: 0 2px 8px 0 rgba(255, 255, 255, 0.37);
+            background: black;
+            box-shadow: 0 1px 2px 0 rgba(255, 255, 255, 0.37);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.78);
+            border-radius: 0px 8px 8px 8px;
+            border: 1px solid rgba(255, 255, 255, 0.68);
           }
           .chatstyleuser {
-            background: rgba(0, 0, 0, 0.6);
-            box-shadow: 0 2px 8px 0 rgba(255, 255, 255, 0.37);
+            background: #111827;
+            box-shadow: 0 1px 2px 0 rgba(255, 255, 255, 0.37);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.78);
+            border-radius: 8px 0px 8px 8px;
+            border: 1px solid rgba(255, 255, 255, 0.68);
             color: white;
           }
          
@@ -97,26 +102,33 @@ export function VestGPT() {
           {qaPairs.map((pair, index) => (
             <div key={index} className="flex gap-2 flex-col overflow-y-auto">
               {pair.role === "user" &&
+              <div className="flex  mt-3">
                 <div className="text-sm flex items-center chatstyleuser w-[75%] ml-[25%]">
+                  
+                  <div className="col-span-11 w-auto">
+                    <p className="text-inherit text-base ml-2 p-1">{pair.content}</p>
+                  </div>
+                </div>
+                <img
+                  src="https://cdn3d.iconscout.com/3d/free/thumb/free-user-3814118-3187499.png?f=webp"
+                  className="w-10 h-10"
+                />
+                </div>}
+
+              {pair.role === "system" &&
+
+                <div className="flex">
+
                   <div className="shrink-0">
                     <img
-                      className="w-10"
-                      src="https://cdn3d.iconscout.com/3d/free/thumb/free-user-3814118-3187499.png?f=webp"
-                      alt="ESG Image"
-                      width={40}
-                      height={40}
-                    />
+                    src="/ai.png"
+                    alt="Seidor AI Image"
+                    className="w-6 h-6 mt-1 mr-2"
+                  />
                   </div>
-                  <div className="col-span-11 mt-1">
-                    <p className="text-inherit">{pair.content}</p>
-                  </div>
-                </div>}
-              {pair.role === "system" &&
                 <div className="text-sm flex items-center chatstyle w-[75%]">
-                  <div className="shrink-0">
-                    <img src="/ai.png" alt="ESG Image" width={40} height={40} />
-                  </div>
-                  <div className="col-span-11">{pair.content}</div>
+                  <div className="ml-2 p-1 text-base col-span-11">{pair.content}</div>
+                </div>
                 </div>}
             </div>
           ))}
@@ -147,13 +159,14 @@ export function VestGPT() {
           value={question}
         />
         <Button
-          className="bg-black "
+          className="bg-black text-white hover:bg-slate-200 hover:text-black"
           type="submit"
           onClick={() => {
             query();
           }}
           disabled={question === ""}
         >
+          {" "}
           Ask
         </Button>
       </div>
