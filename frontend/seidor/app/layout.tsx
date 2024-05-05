@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { DeepgramContextProvider } from "./context/DeepgramContextProvider";
+import { MicrophoneContextProvider } from "./context/MicrophoneContextProvider";
+import classNames from "classnames";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +18,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="h-dvh">
+      <body
+        className={`h-full dark ${classNames(
+          inter.className
+        )}`}
+      >
+        <MicrophoneContextProvider>
+          <DeepgramContextProvider>{children}</DeepgramContextProvider>
+        </MicrophoneContextProvider>
+      </body>
     </html>
   );
 }
