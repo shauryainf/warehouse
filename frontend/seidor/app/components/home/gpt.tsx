@@ -14,8 +14,8 @@ export function VestGPT() {
 
   const url = "https://warehouse-server.azurewebsites.net/api/query"
   const query = async () => {
-
     try {
+      setQuestion("");
       const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -149,9 +149,8 @@ export function VestGPT() {
         <Button
           className="bg-black "
           type="submit"
-          onClick={(e) => {
+          onClick={() => {
             query();
-            setQuestion("");
           }}
           disabled={question === ""}
         >
