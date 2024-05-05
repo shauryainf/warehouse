@@ -1,5 +1,5 @@
 import json
-from backend.server_funcs import get_response_for_chatprompt
+from server_funcs import get_response_for_chatprompt
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 

@@ -30,10 +30,10 @@ Provided the following query from the user:
 {query}
 
 which of the above categories does the query best fall into? Only return the number of the category. If the query doesn't fit into any of the categories, return 4.
+Make sure to only return a single digit number between 0 and 8.
 """
 
-def classify_picking_process_query_type(query, current_state : int):
-    # TODO - Add the current state to the prompt
+def classify_picking_process_query_type(query):
     picking_process_prompt_updated = picking_process_prompt.format(query=query)
 
     model="gpt-3.5-turbo"
@@ -48,6 +48,6 @@ def classify_picking_process_query_type(query, current_state : int):
     return response.choices[0].message.content
 
 # Testing:
-query = 'i would like to change '
-label = classify_picking_process_query_type(query, 'start')
-print(label)
+# query = 'i would like to change '
+# label = classify_picking_process_query_type(query)
+# print(label)

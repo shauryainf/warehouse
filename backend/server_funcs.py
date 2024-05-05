@@ -2,8 +2,8 @@ import openai
 import os
 import json
 from dotenv import load_dotenv
-from system_prompts import system_prompt_purchase_order, system_prompt_process_tips
-from classifiers import classify_picking_process_query_type 
+import system_prompts
+from classifiers import classify_picking_process_query_type, classify_task 
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -11,9 +11,49 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 #--------------------------------- Functions ---------------------------------#
 
 def get_response_for_chatprompt(message, version=3, chat_history=None):
+    if message == "":
+        return "Didn't catch that.", [], 0, 0
     # CLASSIFICATION
-    classification = classify_picking_process_query_type(message, 0)
-    
+
+    classification = classify_picking_process_query_type(message)
+    print("\nClassification: " + str(classification))
+    if classification is not None and classification.isdigit():
+        classification = int(classification)
+    else:        
+        return "Didn't catch that. Could you repeat that", [], 0, 0
+    orders_list = []
+    prompt = ""
+    prompt = system_prompts.get_prompt(classification)
+    if prompt == "":
+        return "Didn't catch that. Could you repeat that", [], 0, 0
+    prompt = prompt.format(query=message, order_list=str(system_prompts.all_order_list))
+    print("Prompt: " + prompt)
+    if classification == 0:
+        # ORDER CHANGE
+
+        new_order_number = openai.chat.completions.create(
+            model='gpt-4-0125-preview',
+            temperature=0,
+            messages=[
+                {
+                    "role": "system",
+                    "content":prompt
+                }
+            ]).choices[0].message.content
+        # print('Prompt: ' + prompt)
+        print('New Order Number: ' + new_order_number)
+        if (new_order_number is not None and not new_order_number.isdigit()) or new_order_number == "-1":
+            return "Please provide me with an order number.", [], 0, 0
+        else:
+            # get order list where order_number key is new_order_number, new_order_number can be a string
+            new_order_number = int(new_order_number)  
+            message = f"Display the order details for order {str(system_prompts.get_order_list(new_order_number))} in a markdown format."
+
+
+        
+        print("Order Change")
+
+
     # SEMANTIC SEARCH 
     # TODO
     print("Chat History: " + str(chat_history))
