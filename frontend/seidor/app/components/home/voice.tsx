@@ -109,6 +109,7 @@ export default function VoiceWidget() {
     if (keywordDetection !== null) {
       // ... use keyword detection result
       console.log("keywordDetection: ", keywordDetection);
+      alert("Sei connected!");
       SpeechRecognition.startListening({ continuous: true });
       console.log(SpeechRecognition);
     }
@@ -131,7 +132,7 @@ export default function VoiceWidget() {
     setQuestion(finalTranscript);
     // console.log(question);
     await query(finalTranscript);
-    // resetTranscript();
+    resetTranscript();
     SpeechRecognition.stopListening();
 
     console.log("Stopped");
